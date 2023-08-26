@@ -1,0 +1,38 @@
+<html>
+<header>
+    <title>Test page</title>
+</header>
+
+<body>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <div>This is simple test to get data from a backend</div>
+    <div><span>Last update: </span><span id="time-container"></span></div>
+    <div>
+        <label for="data-input">Data to send:</label>
+        <input type="text" id="data-input">
+        <button onclick="sendData()">Send data</button>
+    </div>
+    <div>
+        <div id="sent-data-container"></div>
+    </div>
+    <hr>
+    <div>
+        <button onclick="getUsers()">Get user data</button>
+        <div id="result-container"></div>
+    </div>
+    <div>
+        <button onclick="plotYields()">Plot yield data</button>
+        <div id="yield-result-container" style="width:100%;max-width:700px"></div>
+    </div>
+    
+    <div>
+        <label for="data-input">Yield Date:</label>
+        <input type="date" id="yield-date-input">
+        <button onclick="plotYieldOnDate()">Plot Yield</button>
+        <div id="yield-on-date-result" style="width:100%;max-width:700px"></div>
+    </div>
+
+    <script src="scripts.js" defer></script>
+</body>
+
+</html>
