@@ -7,6 +7,7 @@ import pandas as pd
 import quandl
 import plotly.express as px 
 from datetime import datetime, timedelta
+import backend.fetchData as fetchData
 
 app = Flask(__name__)
 CORS(app)

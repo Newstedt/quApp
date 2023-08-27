@@ -124,7 +124,7 @@ function plotYieldOnDate() {
     // Send the request over the network
     xhr.send(JSON.stringify({"yield date": yieldDate}));
 }
-
+ 
 (function () {
     getDate();
 })();
