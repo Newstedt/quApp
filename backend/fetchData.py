@@ -1,8 +1,9 @@
- # %%
 import pandas as pd
 import quandl
 from datetime import timedelta, datetime
 import requests
+from bs4 import BeautifulSoup
+import json
 
 def fetchHistYield(start_date, end_date):
     with open('backend/quandlApiKey.txt', 'r') as f:
@@ -56,4 +57,12 @@ def fetchBondRefData(cusip):
     ref_data.update(issueDate=datetime.strptime(ref_data.get('issueDate'), '%Y-%m-%dT%H:%M:%S').date())
     
     return ref_data
-    
+
+def getCusipList():
+    url = requests.get("https://treasurydirect.gov/TA_WS/securities/auctioned").content
+
+    soup = BeautifulSoup(url, 'html.parser')
+    data = json.loads(str(soup.contents[0].string))
+
+    cusip_list = [x['cusip'] for x in data]
+    return cusip_list

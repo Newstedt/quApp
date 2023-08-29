@@ -1,11 +1,7 @@
-import pandas as pd
-technologies = {
-    'Courses':["Spark","PySpark","Python","pandas","Hadoop"],
-    'Fee' :[20000,25000,22000,24000,30000],
-    'Duration':['30day','40days','35days','60days','55days'],
-    'Discount':[1000,2300,2500,2000,3000]
-              }
+import json
 
+# Your JSON-formatted string
+json_string = '[{"cusip":"912797FA0","issueDate":"2023-08-31T00:00:00","securityType":"Bill", ...}]'
 
-df = pd.DataFrame(technologies)
-print(df.iloc[0].Courses)
+# Convert the string to a Python list of dictionaries
+data = json.loads(json_string)
