@@ -34,21 +34,26 @@ def fetchBondRefData(cusip):
     response = requests.get(f'https://www.treasurydirect.gov/TA_WS/securities/search?cusip={cusip}&format=json')
     json_response = response.json()
 
-    fields = ['maturityDate', 'interestRate', 'interestPaymentFrequency', 'minimumToIssue']
+    fields = ['issueDate','maturityDate', 'interestRate', 'interestPaymentFrequency', 'minimumToIssue', 'frnIndexDeterminationRate', 'spread']
     
     ref_data = {key: json_response[0].get(key) for key in fields}
     if ref_data.get('interestPaymentFrequency') == 'Semi-Annual':
         ref_data.update(interestPaymentFrequency=2)
-    elif ref_data.get('interestPaymentFrequency') == 'None':
+    elif ref_data.get('interestPaymentFrequency') == 'None': 
         ref_data.update(interestPaymentFrequency=1)
+    elif ref_data.get('interestPaymentFrequency') == 'Quarterly':
+        ref_data.update(interestPaymentFrequency=4)
     
-    if not ref_data.get('interestRate'):
+    if not ref_data.get('interestRate') and ref_data.get('interestPaymentFrequency') == 1:
         ref_data.update(interestRate=0)
+    elif not ref_data.get('interestRate') and ref_data.get('interestPaymentFrequency') == 4:
+        ref_data.update(interestRate=float(ref_data.get('frnIndexDeterminationRate')) + float(ref_data.get('spread'))) #in case quarterly with no interest QUARTERLY should use: FrnIndexDeterminationRate + spread
 
     ref_data['faceValue'] = ref_data.pop('minimumToIssue')
     ref_data.update(faceValue=float(ref_data.get('faceValue')))
     ref_data.update(interestRate=float(ref_data.get('interestRate')))
     ref_data.update(maturityDate=datetime.strptime(ref_data.get('maturityDate'), '%Y-%m-%dT%H:%M:%S').date()) 
+    ref_data.update(issueDate=datetime.strptime(ref_data.get('issueDate'), '%Y-%m-%dT%H:%M:%S').date())
     
     return ref_data
     

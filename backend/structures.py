@@ -5,16 +5,17 @@ import fetchData
 import numpy as np
 
 class Bond:
-    def __init__(self, isin, maturity, face, cpn_rate, cpn_freq):
-        self.isin = isin
+    def __init__(self, cusip, issue_date, maturity, face, cpn_rate, cpn_freq):
+        self.cusip = cusip
         self.maturity = maturity
+        self.issue_date = issue_date
         self.face = face
         self.cpn_rate = cpn_rate
         self.cpn_freq = cpn_freq
-        self.num_cfs = int(self.ttm()//(360/self.cpn_freq))
+        self.num_cfs = int(self.ttm()//(360/self.cpn_freq)) + 1
         
     def ttm(self):
-        delta = self.maturity - date.today()
+        delta = self.maturity - max(date.today(), self.issue_date)
         return delta.days
     
     def theoPrice(self):
@@ -22,13 +23,7 @@ class Bond:
     
     def cashflows(self):
         
-        #currently only supporting SEMI_ANNUAL coupon frequency
-        if self.cpn_rate == 0:
-            return pd.DataFrame(
-            list(zip([0], [0], [0], [0], [0])),
-            columns =['date', 'days_to', 'cashflow', 'disc_cashflows', 'discount_factor'])
-            
-        t = [x - date.today() for x in cfDates(self)]
+        t = [x - max(date.today(), self.issue_date) for x in cfDates(self)]
         yields = fetchData.fetchSingleDayYield(date.today())
         yields.iloc[0]
         
@@ -42,9 +37,14 @@ class Bond:
         discount_factors = cfDiscountFactors(self)
         disc_cashflows = discount_factors*np.array(cashflows)
         
-        return pd.DataFrame(
+        cf_df = pd.DataFrame(
             list(zip(dates, days_to, cashflows, disc_cashflows, discount_factors)),
             columns =['date', 'days_to', 'cashflow', 'disc_cashflows', 'discount_factor'])
+        
+        if cf_df.iloc[0].date == self.issue_date:
+            return cf_df.iloc[1:]
+        else:
+            return cf_df
     
     #def discountFactors(self):
         
@@ -64,7 +64,7 @@ def cfAmounts(Bond):
 
 def cfDates(Bond):
     cf_num = list(range(0, int(Bond.num_cfs)))
-    cf_dates = [Bond.maturity - relativedelta(months=+6*x) for x in cf_num]
+    cf_dates = [Bond.maturity - relativedelta(months=+12/Bond.cpn_freq*x) for x in cf_num]
     cf_dates.reverse()
     return cf_dates
 
@@ -72,9 +72,11 @@ def cfDiscountFactors(Bond):
     yields = fetchData.fetchSingleDayYield(date.today())
     tenor_days = [convertCondition(x) for x in yields.iloc[0].index.tolist()]
     yields_with_days = pd.DataFrame(
-        list(zip(tenor_days, yields.iloc[0].tolist())), 
+        list(zip([0]+tenor_days, [0]+yields.iloc[0].tolist())), 
         columns=['days','yield'])
-    t = [x - date.today() for x in cfDates(Bond)]
+    
+    # Calculate number of days until each cashflow
+    t = [x - max(date.today(), Bond.issue_date) for x in cfDates(Bond)]
     cf_days = [x.days for x in t]
     
     r = [interpolateYield(x,yields_with_days)/100 for x in cf_days]
