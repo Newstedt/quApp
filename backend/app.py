@@ -7,6 +7,7 @@ import pandas as pd
 import quandl
 import plotly.express as px 
 from datetime import datetime, timedelta
+import fetchData
 
 app = Flask(__name__)
 CORS(app)
@@ -41,30 +42,22 @@ def users():
 def ustYields():
     print("ustYields endpoint reached...")
     if request.method == "GET":
-        ustYields = getUstYields(None) 
-        return Response(ustYields, mimetype='application/json')
-    if request.method == "POST":
+        ustYields = fetchData.fetchSingleDayYield(datetime.today())#getUstYields(None) 
+        #return Response(ustYields.to_json(orient ='index'), mimetype='application/json')
+    elif request.method == "POST":
         received_date = request.get_json()
         input_date = received_date["yield date"]
-        ustYields = getUstYields(input_date)
-        return Response(ustYields, mimetype='application/json')
+        ustYields = fetchData.fetchSingleDayYield(datetime.strptime(input_date, "%Y-%m-%d"))#getUstYields(input_date)
+        
+    return Response(ustYields.to_json(orient ='index'), mimetype='application/json')
 
 def getUstYields(yield_date):
-    print("HERE IT IS MOTHERFUCKER: ", yield_date)
     if not yield_date:
         t = datetime.today()
     else:
         t = datetime.strptime(yield_date, "%Y-%m-%d")
     
-    with open('quandlApiKey.txt', 'r') as f:
-        quandlKey = f.readline()
-        f.close()
-    quandl.ApiConfig.api_key = quandlKey
-    
-    ustYield = pd.DataFrame()
-    while ustYield.empty:
-        ustYield = quandl.get('USTREASURY/REALYIELD', start_date=t, end_date=t)
-        t = t - timedelta(days=1)
+    ustYield = fetchData.fetchSingleDayYield(t)
         
     return ustYield.to_json(orient ='index')
 
