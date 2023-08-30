@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import json
 
 def fetchHistYield(start_date, end_date):
-    with open('backend/quandlApiKey.txt', 'r') as f:
+    with open('quandlApiKey.txt', 'r') as f:
         quandlKey = f.readline()
         f.close()
     quandl.ApiConfig.api_key = quandlKey
@@ -15,7 +15,7 @@ def fetchHistYield(start_date, end_date):
     return ustYield
 
 def fetchSingleDayYield(date):
-    with open('backend/quandlApiKey.txt', 'r') as f:
+    with open('quandlApiKey.txt', 'r') as f:
         quandlKey = f.readline()
         f.close()
     quandl.ApiConfig.api_key = quandlKey

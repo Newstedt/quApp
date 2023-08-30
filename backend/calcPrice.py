@@ -7,7 +7,7 @@ def theoPriceFromCusip(cusip):
         cusip, 
         bond_ref['issueDate'], 
         bond_ref['maturityDate'], 
-        100, 
+        100, #default to 100 for now
         bond_ref['interestRate']/100, 
         bond_ref['interestPaymentFrequency'])
     
