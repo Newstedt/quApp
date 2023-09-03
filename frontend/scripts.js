@@ -130,7 +130,7 @@ function cashflowCallback(resource, input_cusip) {
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
                 console.log("Cashflow data received!");
-                const jsonResponse = JSON.parse(xhr.responseText);
+                const jsonResponse = JSON.parse(request.responseText);
                 priceVal = document.getElementById('theo-price-container');
                 // Set current data text
                 priceVal.innerHTML = jsonResponse[0]['theoPrice']
