@@ -160,9 +160,9 @@ function cashflowCallback(resource, input_cusip) {
             }
         });
         request.open("POST", resource, true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         // Send the request over the network
-        xhr.send(JSON.stringify({"bond cusip": input_cusip}));
+        request.send(JSON.stringify({"bond cusip": input_cusip}));
     });
     return promise 
 }
@@ -182,7 +182,7 @@ function getBondCashflows() {
             console.log("promise rejected", err);
     });
 }
-
+/*
 function getBondTheoPrice() {
     bondCusip = document.getElementById('cusip-input').value;
     if (!bondCusip) {
@@ -201,7 +201,7 @@ function getBondTheoPrice() {
         .catch((err) => {
             console.log("promise rejected", err);
         });
-}
+} */
 
 function getBondList() { 
 
