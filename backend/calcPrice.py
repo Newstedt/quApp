@@ -11,6 +11,6 @@ def theoPriceFromCusip(cusip):
         bond_ref['interestRate']/100, 
         bond_ref['interestPaymentFrequency'])
     
-    return bond_struct.theoPrice()
-
-print(theoPriceFromCusip('91282CHS3'))
+    cashflows = bond_struct.cashflows()
+    theoPrice = sum(cashflows.disc_cashflows.tolist())
+    return theoPrice, cashflows
