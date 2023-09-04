@@ -1,108 +1,107 @@
 {
-  "theoPrice": 100.43839639686641,
   "0": {
     "date": "2023-08-31",
-    "days_to": -3,
+    "days_to": -4,
     "cashflow": 2.0625,
     "disc_cashflows": 2.0625,
-    "discount_factor": 1.0
+    "discount_factor": 1
   },
   "1": {
     "date": "2024-02-29",
-    "days_to": 179,
+    "days_to": 178,
     "cashflow": 2.0625,
-    "disc_cashflows": 2.0071533387,
-    "discount_factor": 0.9731652551
+    "disc_cashflows": 2.0074517577,
+    "discount_factor": 0.9733099431
   },
   "2": {
     "date": "2024-08-31",
-    "days_to": 363,
+    "days_to": 362,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.9540679858,
-    "discount_factor": 0.9474269022
+    "disc_cashflows": 1.9543319762,
+    "discount_factor": 0.9475548976
   },
   "3": {
     "date": "2025-02-28",
-    "days_to": 544,
+    "days_to": 543,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.909244812,
-    "discount_factor": 0.9256944543
+    "disc_cashflows": 1.9094766122,
+    "discount_factor": 0.9258068423
   },
   "4": {
     "date": "2025-08-31",
-    "days_to": 728,
+    "days_to": 727,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.8693138377,
-    "discount_factor": 0.9063339819
+    "disc_cashflows": 1.8695349231,
+    "discount_factor": 0.9064411748
   },
   "5": {
     "date": "2026-02-28",
-    "days_to": 909,
+    "days_to": 908,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.8311207557,
-    "discount_factor": 0.887816124
+    "disc_cashflows": 1.8313219782,
+    "discount_factor": 0.8879136864
   },
   "6": {
     "date": "2026-08-31",
-    "days_to": 1093,
+    "days_to": 1092,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.7955691623,
-    "discount_factor": 0.8705789878
+    "disc_cashflows": 1.7957756785,
+    "discount_factor": 0.8706791168
   },
   "7": {
     "date": "2027-02-28",
-    "days_to": 1274,
+    "days_to": 1273,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.7592041373,
-    "discount_factor": 0.8529474605
+    "disc_cashflows": 1.7593995909,
+    "discount_factor": 0.8530422259
   },
   "8": {
     "date": "2027-08-31",
-    "days_to": 1458,
+    "days_to": 1457,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.7242416648,
-    "discount_factor": 0.8359959587
+    "disc_cashflows": 1.7244263788,
+    "discount_factor": 0.836085517
   },
   "9": {
     "date": "2028-02-29",
-    "days_to": 1640,
+    "days_to": 1639,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.6915595905,
-    "discount_factor": 0.8201501045
+    "disc_cashflows": 1.6917341512,
+    "discount_factor": 0.82023474
   },
   "10": {
     "date": "2028-08-31",
-    "days_to": 1824,
+    "days_to": 1823,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.6596265663,
-    "discount_factor": 0.8046674261
+    "disc_cashflows": 1.6598219848,
+    "discount_factor": 0.8047621744
   },
   "11": {
     "date": "2029-02-28",
-    "days_to": 2005,
+    "days_to": 2004,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.6246734171,
-    "discount_factor": 0.7877204446
+    "disc_cashflows": 1.624864266,
+    "discount_factor": 0.7878129774
   },
   "12": {
     "date": "2029-08-31",
-    "days_to": 2189,
+    "days_to": 2188,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.5899777838,
-    "discount_factor": 0.7708983194
+    "disc_cashflows": 1.5901641055,
+    "discount_factor": 0.7709886572
   },
   "13": {
     "date": "2030-02-28",
-    "days_to": 2370,
+    "days_to": 2369,
     "cashflow": 2.0625,
-    "disc_cashflows": 1.5566501931,
-    "discount_factor": 0.7547394875
+    "disc_cashflows": 1.5568321744,
+    "discount_factor": 0.7548277209
   },
   "14": {
     "date": "2030-08-31",
-    "days_to": 2554,
+    "days_to": 2553,
     "cashflow": 102.0625,
-    "disc_cashflows": 75.4034931517,
-    "discount_factor": 0.7387972385
+    "disc_cashflows": 75.4119857738,
+    "discount_factor": 0.7388804485
   }
 }
