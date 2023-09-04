@@ -1,23 +1,108 @@
 {
-    "1692662400000": {
-        "5 YR": 2.22,
-        "7 YR": 2.08,
-        "10 YR": 1.99,
-        "20 YR": 2.0,
-        "30 YR": 2.07
-    },
-    "1692748800000": {
-        "5 YR": 2.1,
-        "7 YR": 1.95,
-        "10 YR": 1.84,
-        "20 YR": 1.86,
-        "30 YR": 1.93
-    },
-    "1692835200000": {
-        "5 YR": 2.15,
-        "7 YR": 2.0,
-        "10 YR": 1.91,
-        "20 YR": 1.91,
-        "30 YR": 1.98
-    }
+  "theoPrice": 100.43839639686641,
+  "0": {
+    "date": "2023-08-31",
+    "days_to": -3,
+    "cashflow": 2.0625,
+    "disc_cashflows": 2.0625,
+    "discount_factor": 1.0
+  },
+  "1": {
+    "date": "2024-02-29",
+    "days_to": 179,
+    "cashflow": 2.0625,
+    "disc_cashflows": 2.0071533387,
+    "discount_factor": 0.9731652551
+  },
+  "2": {
+    "date": "2024-08-31",
+    "days_to": 363,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.9540679858,
+    "discount_factor": 0.9474269022
+  },
+  "3": {
+    "date": "2025-02-28",
+    "days_to": 544,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.909244812,
+    "discount_factor": 0.9256944543
+  },
+  "4": {
+    "date": "2025-08-31",
+    "days_to": 728,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.8693138377,
+    "discount_factor": 0.9063339819
+  },
+  "5": {
+    "date": "2026-02-28",
+    "days_to": 909,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.8311207557,
+    "discount_factor": 0.887816124
+  },
+  "6": {
+    "date": "2026-08-31",
+    "days_to": 1093,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.7955691623,
+    "discount_factor": 0.8705789878
+  },
+  "7": {
+    "date": "2027-02-28",
+    "days_to": 1274,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.7592041373,
+    "discount_factor": 0.8529474605
+  },
+  "8": {
+    "date": "2027-08-31",
+    "days_to": 1458,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.7242416648,
+    "discount_factor": 0.8359959587
+  },
+  "9": {
+    "date": "2028-02-29",
+    "days_to": 1640,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.6915595905,
+    "discount_factor": 0.8201501045
+  },
+  "10": {
+    "date": "2028-08-31",
+    "days_to": 1824,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.6596265663,
+    "discount_factor": 0.8046674261
+  },
+  "11": {
+    "date": "2029-02-28",
+    "days_to": 2005,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.6246734171,
+    "discount_factor": 0.7877204446
+  },
+  "12": {
+    "date": "2029-08-31",
+    "days_to": 2189,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.5899777838,
+    "discount_factor": 0.7708983194
+  },
+  "13": {
+    "date": "2030-02-28",
+    "days_to": 2370,
+    "cashflow": 2.0625,
+    "disc_cashflows": 1.5566501931,
+    "discount_factor": 0.7547394875
+  },
+  "14": {
+    "date": "2030-08-31",
+    "days_to": 2554,
+    "cashflow": 102.0625,
+    "disc_cashflows": 75.4034931517,
+    "discount_factor": 0.7387972385
+  }
 }

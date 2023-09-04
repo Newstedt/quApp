@@ -1,37 +1,91 @@
 <html>
 <header>
-    <title>Test page</title>
+    <title>US Treasury Lookup</title>
+    <h1>US Treasury Lookup</h1>
+    <style>
+        div.yield-graph, table.bond-table {
+            display:inline-block;
+        }
+        table.bond-table {
+            overflow-y: auto; /* make the table scrollable if height is more than 500 px  */
+            height: 500px; /* gives an initial height of 500px to the table */
+            width: 700px;
+        }
+        .table.bond-table thead th {
+            position: sticky; /* make the table heads sticky */
+            top: 0px; /* table head will be placed from the top of the table and sticks to it */
+        }
+        div.yield-graph {
+            height: 500px;
+        }
+        table {
+            border-collapse: collapse; /* make the table borders collapse to each other */
+        }
+        th,
+        td {
+        padding: 8px 16px;
+        border: 1px solid #ccc;
+        }
+        th {
+        background: #eee;
+        }
+    </style>
 </header>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<body onload="loadStartPage();">
 
-<body>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <div>This is simple test to get data from a backend</div>
-    <div><span>Last update: </span><span id="time-container"></span></div>
-    <div>
-        <label for="data-input">Data to send:</label>
-        <input type="text" id="data-input">
-        <button onclick="sendData()">Send data</button>
-    </div>
-    <div>
-        <div id="sent-data-container"></div>
-    </div>
-    <hr>
-    <div>
-        <button onclick="getUsers()">Get user data</button>
-        <div id="result-container"></div>
-    </div>
-    <div>
-        <button onclick="plotYields()">Plot yield data</button>
-        <div id="yield-result-container" style="width:100%;max-width:700px"></div>
-    </div>
-    
     <div>
         <label for="data-input">Yield Date:</label>
         <input type="date" id="yield-date-input">
         <button onclick="plotYieldOnDate()">Plot Yield</button>
-        <div id="yield-on-date-result" style="width:100%;max-width:700px"></div>
     </div>
+    <div  class="yield-graph" id="yield-result-container" style="width:100%;max-width:700px"></div>
+    
+    <table class="bond-table">
+        <thead>
+            <tr>
+                <th>cusip</th>
+                <th>issueDate</th>
+                <th>securityType</th>
+                <th>interestRate</th>
+                <th>maturityDate</th>
+                <th>interestPaymentFrequency</th>
+            </tr>
+        </thead>
+        <tbody id="bond-table-output">
 
+        </tbody>
+    </table>
+    <div>
+        <label for="data-input">Bond Cusip</label>
+        <input type="text" id="cusip-input">
+        <button onclick="getBondCashflows();">Calculate CFs</button>
+    </div>
+    <div>
+        <div id="theo-price-container"></div>
+    </div>
+    <table class="cashflow-table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Days until</th>
+                <th>Cashflow</th>
+                <th>Disc. cashflows</th>
+                <th>Disc. factor</th>
+            </tr>
+        </thead>
+        <tbody id="cashflow-table-output">
+
+        </tbody>
+    </table>
+
+    <hr>
+    <!--
+    <div>
+        <button onclick="plotYields()">Plot yield data</button>
+        <div id="yield-result-container" style="width:100%;max-width:700px"></div>
+    </div>
+    -->
     <script src="scripts.js" defer></script>
 </body>
 

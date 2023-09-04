@@ -64,5 +64,15 @@ def getCusipList():
     soup = BeautifulSoup(url, 'html.parser')
     data = json.loads(str(soup.contents[0].string))
 
-    cusip_list = [x['cusip'] for x in data]
-    return cusip_list
+    cusip_list = [
+        {
+            'cusip':x['cusip'],
+            'issueDate':x['issueDate'],
+            'securityType':x['securityType'],
+            'interestRate':x['interestRate'],
+            'maturityDate':x['maturityDate'],
+            'interestPaymentFrequency':x['interestPaymentFrequency']
+            } for x in data]
+    
+    cusip_json = json.dumps(cusip_list, indent=2)
+    return cusip_json

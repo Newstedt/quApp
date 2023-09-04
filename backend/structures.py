@@ -1,7 +1,7 @@
 from datetime import date
 from dateutil.relativedelta import relativedelta
 import pandas as pd
-import fetchData
+import fetchData 
 import numpy as np
 
 class Bond:
@@ -31,7 +31,7 @@ class Bond:
         tenors = yields.iloc[0].index.tolist()
         [convertCondition(x) for x in tenors]
         
-        dates = cfDates(self) 
+        dates = [str(d) for d in cfDates(self)]
         days_to = [x.days for x in t]
         cashflows = cfAmounts(self) 
         discount_factors = cfDiscountFactors(self)
@@ -77,7 +77,7 @@ def cfDiscountFactors(Bond):
     
     # Calculate number of days until each cashflow
     t = [x - max(date.today(), Bond.issue_date) for x in cfDates(Bond)]
-    cf_days = [x.days for x in t]
+    cf_days = [max(x.days,0) for x in t]
     
     r = [interpolateYield(x,yields_with_days)/100 for x in cf_days]
     d = np.exp(-np.array(r)*np.array(cf_days)/360)
