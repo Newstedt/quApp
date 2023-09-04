@@ -133,13 +133,11 @@ function cashflowCallback(resource, input_cusip) {
                 const jsonResponse = JSON.parse(request.responseText);
                 priceVal = document.getElementById('theo-price-container');
                 // Set current data text
-                priceVal.innerHTML = jsonResponse[0]['theoPrice']
+                priceVal.innerHTML = jsonResponse['theoPrice']
                 let placeholder = document.querySelector("#cashflow-table-output");
                 let out = "";
-                isFirst = true;
                 for(const row in jsonResponse){
-                    if (isFirst) { 
-                        isFirst = false; 
+                    if (row == 'theoPrice') {  
                         continue; // Skip the price element
                     }
                     out += `

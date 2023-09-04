@@ -72,7 +72,7 @@ def bondCashflows():
         price_json = json.dumps({'theoPrice': theoPrice})
         merged_json = {**json.loads(price_json), **json.loads(cf_json)}
         
-    return Response(merged_json, mimetype='application/json')
+    return Response(json.dumps(merged_json), mimetype='application/json')
 
 def getUstYields(yield_date):
     if not yield_date:
