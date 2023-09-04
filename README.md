@@ -20,4 +20,4 @@ Value at Risk calculator given historical movements in the yield curve tenors.
 Contributors names and contact info
 
 Gustav Nystedt
-[@linkedin](www.linkedin.com/in/gustavnystedt)
+[@linkedin](https://www.linkedin.com/in/gustavnystedt/)
