@@ -11,8 +11,8 @@ getXmlHttpRequestObject = function () {
 function getDate() {
     date = new Date().toString();
 
-    document.getElementById('time-container').textContent
-        = date;
+    /*document.getElementById('time-container').textContent
+        = date;*/
 }
 
 function yieldCallback(resource) {
@@ -97,7 +97,7 @@ function bondListCallback(resource) {
         request.addEventListener("readystatechange", () => {
             if (request.readyState === 4 && request.status === 200) {
                 console.log("Bond data received!");
-                const jsonResponse = JSON.parse(xhr.responseText);
+                const jsonResponse = JSON.parse(request.responseText);
                 let placeholder = document.querySelector("#bond-table-output");
                 let out = "";
                 for(let row of jsonResponse){
