@@ -5,6 +5,7 @@ from flask_cors import CORS
 import numpy as np
 import pandas as pd
 import quandl
+import sqlite3
 import plotly.express as px 
 from datetime import datetime, timedelta
 import fetchData
@@ -14,6 +15,9 @@ import calcPrice
 
 app = Flask(__name__)
 CORS(app)
+
+conn = sqlite3.connect('quantApp.db') # Connect to the database (creates a new file if it doesn't exist)
+cursor = conn.cursor() # Create a cursor object to execute SQL commands
 
 @app.route("/")
 def hello():
@@ -45,11 +49,11 @@ def users():
 def ustYields():
     print("ustYields endpoint reached...")
     if request.method == "GET":
-        ustYields = fetchData.fetchSingleDayYield(datetime.today())
+        ustYields = fetchData.fetchSingleDayYield(datetime.today(), True)
     elif request.method == "POST":
         received_date = request.get_json()
         input_date = received_date["yield date"]
-        ustYields = fetchData.fetchSingleDayYield(datetime.strptime(input_date, "%Y-%m-%d"))
+        ustYields = fetchData.fetchSingleDayYield(datetime.strptime(input_date, "%Y-%m-%d"), True)
         
     return Response(ustYields.to_json(orient ='index'), mimetype='application/json')
 

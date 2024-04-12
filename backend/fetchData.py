@@ -4,6 +4,7 @@ from datetime import timedelta, datetime
 import requests
 from bs4 import BeautifulSoup
 import json
+import sqlite3
 
 def fetchHistYield(start_date, end_date):
     with open('quandlApiKey.txt', 'r') as f:
@@ -14,7 +15,7 @@ def fetchHistYield(start_date, end_date):
     
     return ustYield
 
-def fetchSingleDayYield(date):
+def fetchSingleDayYield(date, writeToDb=False):
     with open('quandlApiKey.txt', 'r') as f:
         quandlKey = f.readline()
         f.close()
@@ -23,6 +24,15 @@ def fetchSingleDayYield(date):
     while ustYield.empty:
         ustYield = quandl.get('USTREASURY/YIELD', start_date=date, end_date=date)
         date = date - timedelta(days=1)
+    if writeToDb:
+        conn = sqlite3.connect('quantApp.db') # Connect to the database (creates a new file if it doesn't exist)
+        ustYieldWithDate = ustYield.copy()
+        ustYieldWithDate['Date'] = date.date()
+
+        ustYieldWithDate.to_sql('ustYield', conn, if_exists='append', index=False)
+        conn.commit()
+        conn.close()
+
     return ustYield
 
 def histReturn(start_date, end_date):
